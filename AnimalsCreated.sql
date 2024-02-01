@@ -1,6 +1,8 @@
+-- DROP DATABASE IF EXISTS Animals;
 create database if not exists Animals;
 use Animals;
-create table if not exists CLASSAnimal(
+-- truncate table CLASSAnimal;
+create table CLASSAnimal(
 	ID_CLASS_Animals INT PRIMARY KEY auto_increment,
     CLASSAnimalNAME VARCHAR(45)    
 );
@@ -10,75 +12,119 @@ VALUES("Домашние животные"),
 
 create table if not exists HomeAnimals(
 	id_class_HomeAnim INT PRIMARY KEY auto_increment,
-    id_class INT default 1,
+    id_class INT,
     Animal VARCHAR(45),
-    foreign key (id_class) references CLASSAnimal (ID_CLASS_Animal) ON DELETE CASCADE
+    foreign key (id_class) references CLASSAnimal (ID_CLASS_Animals) ON DELETE CASCADE
 );
 
-INSERT HomeAnimals ( Animal)
+INSERT HomeAnimals (id_class, Animal)
 VALUES 
-("собаки"),
-("кошки"),
-("хомяки");
+(1, "собаки"),
+(1, "кошки"),
+(1, "хомяки");
 
-create table if not exists PackAnimals(
+
+create table PackAnimals(
 	id_class_PackAnim INT PRIMARY KEY auto_increment,
-    id_class INT default 2,
+    id_class INT,
     Animal VARCHAR(45),
-    foreign key (id_class) references CLASSAnimal (ID_CLASS_Animal) ON DELETE CASCADE
+    foreign key (id_class) references CLASSAnimal (ID_CLASS_Animals) ON DELETE CASCADE
 );
 
-INSERT HomeAnimals ( Animal)
+INSERT PackAnimals (id_class, Animal)
 VALUES 
-("лошади"),
-("верблюды"),
-("ослы");
+(2, "лошади"),
+(2, "верблюды"),
+(2, "ослы");
 
-CREATE TABLE IF NOT EXISTS dogs(
+-- id_Animals = 1
+CREATE TABLE dogs(
 id INT PRIMARY KEY auto_increment,
-id_Animals INT default 1,
+id_Animals INT,
+nam varchar(25), 
 comands VARCHAR (100),
 birthday DATE,
 foreign key (id_Animals) references HomeAnimals (id_class_HomeAnim) ON DELETE CASCADE
 );
+INSERT dogs (id_Animals, nam, comands, birthday)
+values
+(1, "ам", "фу", "2013-12-04"),
+(1, "кусь", "фас", "2019-12-04"),
+(1, "ля", "бу", "1991-10-02");
 
-CREATE TABLE IF NOT EXISTS cats(
+
+-- id_Animals = 2
+CREATE TABLE cats(
 id INT PRIMARY KEY auto_increment,
-id_Animals INT default 2,
+id_Animals INT,
+nam varchar(25),
 comands VARCHAR (100),
 birthday DATE,
 foreign key (id_Animals) references HomeAnimals (id_class_HomeAnim) ON DELETE CASCADE
 );
+INSERT cats (id_Animals, nam, comands, birthday)
+values
+(2, "кот", "брысь", "2013-11-08"),
+(2, "кыс", "кышь", "2022-12-02"),
+(2, "шум", "иди", "2013-10-01");
 
+-- id_Animals = 3
 CREATE TABLE IF NOT EXISTS hamsters(
 id INT PRIMARY KEY auto_increment,
-id_Animals INT default 3,
+id_Animals INT,
+nam varchar(25),
 comands VARCHAR (100),
 birthday DATE,
 foreign key (id_Animals) references HomeAnimals (id_class_HomeAnim) ON DELETE CASCADE
 );
+INSERT hamsters (id_Animals, nam, comands, birthday)
+values
+(3, "он", "ешь", "2023-03-19"),
+(3, "она", "пей", "2022-04-13"),
+(3, "бок", "ляг", "2021-09-23");
 
+-- id_Animals = 1
 CREATE TABLE IF NOT EXISTS horses(
 id INT PRIMARY KEY auto_increment,
-id_Animals INT default 1,
+id_Animals INT,
+nam varchar(25),
 comands VARCHAR (100),
 birthday DATE,
 foreign key (id_Animals) references PackAnimals (id_class_PackAnim) ON DELETE CASCADE
 );
+INSERT horses (id_Animals, nam, comands, birthday)
+values
+(1, "жуй", "джамп", "2020-07-25"),
+(1, "пей", "ком", "2012-03-15"),
+(1, "скок", "ляг", "2016-01-20");
 
+-- id_Animals = 2
 CREATE TABLE IF NOT EXISTS camels(
 id INT PRIMARY KEY auto_increment,
-id_Animals INT default 2,
+id_Animals INT,
+nam varchar(25),
 comands VARCHAR (100),
 birthday DATE,
 foreign key (id_Animals) references PackAnimals (id_class_PackAnim) ON DELETE CASCADE
 );
+INSERT camels (id_Animals, nam, comands, birthday)
+values
+(2, "кам", "го", "2015-04-30"),
+(2, "бам", "го", "2011-04-06"),
+(2, "лам", "но", "2009-02-04");
 
+-- id_Animals = 3
 CREATE TABLE IF NOT EXISTS donkeys(
 id INT PRIMARY KEY auto_increment,
-id_Animals INT default 3,
+id_Animals INT,
+nam varchar(25),
 comands VARCHAR (100),
 birthday DATE,
 foreign key (id_Animals) references PackAnimals (id_class_PackAnim) ON DELETE CASCADE
 );
 
+INSERT donkeys (id_Animals, nam, comands, birthday)
+values
+(3, "сел", "вперед", "2021-12-02"),
+(3, "мел", "вперед", "2020-10-05"),
+(3, "вел", "вперед", "2014-04-18");
