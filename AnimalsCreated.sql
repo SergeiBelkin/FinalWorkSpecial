@@ -130,7 +130,21 @@ values
 
 DROP TABLE camels;
 
-SELECT nam, comands, birthday
+SELECT id_Animals, nam, comands, birthday
 FROM horses
-UNION SELECT  nam, comands, birthday
+UNION SELECT  id_Animals, nam, comands, birthday
 FROM donkeys;
+
+
+CREATE TABLE New_Animals as 
+SELECT * from dogs
+union SELECT * from cats
+union SELECT * from hamsters
+union SELECT * from horses
+union SELECT * from donkeys;
+
+drop table YoungAnimals;
+CREATE TABLE YoungAnimals AS
+SELECT *, timestampdiff(month, birthday, CURDATE())  as BirthMontH FROM New_Animals
+WHERE datediff(CURDATE(), birthday) between 365 and 1095;
+select * from YoungAnimals;
