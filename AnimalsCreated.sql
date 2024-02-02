@@ -1,7 +1,6 @@
--- DROP DATABASE IF EXISTS Animals;
 create database if not exists Animals;
 use Animals;
--- truncate table CLASSAnimal;
+
 create table CLASSAnimal(
 	ID_CLASS_Animals INT PRIMARY KEY auto_increment,
     CLASSAnimalNAME VARCHAR(45)    
@@ -128,3 +127,10 @@ values
 (3, "сел", "вперед", "2021-12-02"),
 (3, "мел", "вперед", "2020-10-05"),
 (3, "вел", "вперед", "2014-04-18");
+
+DROP TABLE camels;
+
+SELECT nam, comands, birthday
+FROM horses
+UNION SELECT  nam, comands, birthday
+FROM donkeys;
